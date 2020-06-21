@@ -15,7 +15,6 @@ Theories
             <td class="theorylistlink"><a href="{{subConcept.get_theory_easy_update_url}}">{% if subConcept.isEasyFilled %}Edit Easy Examples{%else%}Add Easy Examples{%endif%}</a></td>
             <td class="theorylistlink"><a href="{{subConcept.get_theory_medium_update_url}}">{% if subConcept.isMediumFilled %}Edit Medium Examples{%else%}Add Medium Examples{%endif%}</a></td>
             <td class="theorylistlink"><a href="{{subConcept.get_theory_hard_update_url}}">{% if subConcept.isHardFilled %}Edit Hard Examples{%else%}Add Hard Examples{%endif%}</a></td>
-            <td class="theorylistlink"><a href="{{ subConcept.get_theory_view_url}}">show</a></td>
             {%else%}
             <td class="theorylistlink"><a href="{{subConcept.get_theory_add_url}}">Add Theory</a></td>
             <td class="theorylistlink"><a href="{{subConcept.get_theory_easy_add_url}}">Add Easy Examples</a></td>

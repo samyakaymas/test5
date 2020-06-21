@@ -30,5 +30,6 @@ urlpatterns=[
     # path('showQues',views.QuesListView.as_view(),name='list-ques' ),
     # path('quesUpdate/<int:pk>',views.QuesUpdateView.as_view(), name='ques-update'),
     path('showTheory',login_required(views.TheoryListView.as_view()), name='theory-list'),
+    path('previewTheory',login_required(views.TheoryPreviewListView.as_view()),name='theory-preview'),
     path('subConceptName',views.loadSubConceptName,name='subConcept-Name'),
 ]

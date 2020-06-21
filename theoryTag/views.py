@@ -55,6 +55,17 @@ class TheoryListView(ListView):
         userChapter=Chapter.objects.get(pk=get_user_model().objects.get(pk=self.request.user.id).chapter.id)
         context['chapter']=userChapter
         return context
+class TheoryPreviewListView(ListView):
+    def get(self,request, *args, **kwargs):
+        if not request.user.can_see_theory:
+            return render(request,"theoryTag/401.html")
+        return super().get(request, *args, **kwargs)
+    model=Theory
+    template_name='theoryTag/theory_preview_list.html'
+    def get_queryset(self):
+        userId = self.request.user.id
+        print(userId)
+        return Theory.objects.filter(userId=userId)
 
 class TheoryDetailView(DetailView):
     def get(self,request, *args, **kwargs):
