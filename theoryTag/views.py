@@ -65,7 +65,9 @@ class TheoryPreviewListView(ListView):
     def get_queryset(self):
         userId = self.request.user.id
         print(userId)
-        return Theory.objects.filter(userId=userId)
+        userConcepts=Chapter.objects.get(pk=get_user_model().objects.get(pk=self.request.user.id).chapter.id).concepts.all()
+        userSubConcepts=SubConcept.objects.filter(concept__in=userConcepts)
+        return Theory.objects.filter(subConcept__in=userSubConcepts)
 
 class TheoryDetailView(DetailView):
     def get(self,request, *args, **kwargs):
