@@ -34,6 +34,7 @@ class TheoryCreateView(CreateView):
         self.object.subConcept=SubConcept.objects.get(pk=self.kwargs.get('subConceptId'))
         self.object.userId = userId
         self.object.save()
+        self.object.isTheoryFilled=True
         self.object.prerequisites.set(prerequisites)
         self.object.twinConcepts.set(twinConcepts)
         self.object.save()
@@ -81,6 +82,23 @@ class TheoryUpdateView(UpdateView):
         self.object.twinConcepts.set(twinConcepts)
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+class EasyCreateView(CreateView):
+    def get(self,request, *args, **kwargs):
+        if not request.user.can_add_theory:
+            return render(request,"theoryTag/401.html")
+        return super().get(request, *args, **kwargs)
+    model=Theory
+    form_class=TheoryEasyForm
+    success_url='/theory/showTheory'
+    def form_valid(self,form):
+        self.object=form.save(commit=False)
+        self.object.subConcept=SubConcept.objects.get(pk=self.kwargs.get('subConceptId'))
+        self.object.userId=self.request.user.id
+        self.object.save()
+        self.object.isEasyFilled=True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
 class EasyUpdateView(UpdateView):
     def get(self,request, *args, **kwargs):
         if Theory.objects.get(pk=kwargs['pk']).isEasyFilled:
@@ -99,7 +117,22 @@ class EasyUpdateView(UpdateView):
     form_class = TheoryEasyForm
     pk_url_kwarg= 'pk'
     success_url='/theory/showTheory'
-  
+class MediumCreateView(CreateView):
+    def get(self,request, *args, **kwargs):
+        if not request.user.can_add_theory:
+            return render(request,"theoryTag/401.html")
+        return super().get(request, *args, **kwargs)
+    model=Theory
+    form_class=TheoryMediumForm
+    success_url='/theory/showTheory'
+    def form_valid(self,form):
+        self.object=form.save(commit=False)
+        self.object.subConcept=SubConcept.objects.get(pk=self.kwargs.get('subConceptId'))
+        self.object.userId=self.request.user.id
+        self.object.save()
+        self.object.isMediumFilled=True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 class MediumUpdateView(UpdateView):
     def get(self,request, *args, **kwargs):
         if Theory.objects.get(pk=kwargs['pk']).isMediumFilled:
@@ -119,6 +152,22 @@ class MediumUpdateView(UpdateView):
     pk_url_kwarg= 'pk'
     success_url='/theory/showTheory'
   
+class HardCreateView(CreateView):
+    def get(self,request, *args, **kwargs):
+        if not request.user.can_add_theory:
+            return render(request,"theoryTag/401.html")
+        return super().get(request, *args, **kwargs)
+    model=Theory
+    form_class=TheoryHardForm
+    success_url='/theory/showTheory'
+    def form_valid(self,form):
+        self.object=form.save(commit=False)
+        self.object.subConcept=SubConcept.objects.get(pk=self.kwargs.get('subConceptId'))
+        self.object.userId=self.request.user.id
+        self.object.save()
+        self.object.isHardFilled=True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 class HardUpdateView(UpdateView):
     def get(self,request, *args, **kwargs):
         if Theory.objects.get(pk=kwargs['pk']).isHardFilled:
@@ -137,8 +186,6 @@ class HardUpdateView(UpdateView):
     form_class = TheoryHardForm
     pk_url_kwarg= 'pk'
     success_url='/theory/showTheory'
-  
-
 
 
 class QuesUpdateView(UpdateView):

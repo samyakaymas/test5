@@ -33,6 +33,8 @@ class SubConcept(models.Model):
         return self.name
     def isTheory(self):
         return bool(len(self.Theory.all()))
+    def isTheoryFilled(self):
+        return self.Theory.all()[0].isTheoryFilled
     def isEasyFilled(self):
         return self.Theory.all()[0].isEasyFilled
     def isMediumFilled(self):
@@ -42,16 +44,23 @@ class SubConcept(models.Model):
     
     def get_theory_add_url(self):
         return reverse('add', kwargs={'subConceptId': self.pk})
+    def get_theory_easy_add_url(self):
+        return reverse('easy-add',kwargs={'subConceptId':self.pk})
+    def get_theory_medium_add_url(self):
+        return reverse('medium-add',kwargs={'subConceptId':self.pk})
+    def get_theory_hard_add_url(self):
+        return reverse('hard-add',kwargs={'subConceptId':self.pk})
     def get_theory_update_url(self):
         return reverse('theory-update',kwargs={'pk':self.Theory.all()[0].pk})
+    def get_theory_easy_update_url(self):
+        return reverse('easy-update',kwargs={'pk':self.Theory.all()[0].pk})
+    def get_theory_medium_update_url(self):
+        return reverse('medium-update',kwargs={'pk':self.Theory.all()[0].pk})
+    def get_theory_hard_update_url(self):
+        return reverse('hard-update',kwargs={'pk':self.Theory.all()[0].pk})
     def get_theory_view_url(self):
         return reverse('theory-details', kwargs={'pk': self.Theory.all()[0].pk})
-    def get_theory_easy_url(self):
-        return reverse('easy-update',kwargs={'pk':self.Theory.all()[0].pk})
-    def get_theory_medium_url(self):
-        return reverse('medium-update',kwargs={'pk':self.Theory.all()[0].pk})
-    def get_theory_hard_url(self):
-        return reverse('hard-update',kwargs={'pk':self.Theory.all()[0].pk})
+    
 DURATION_CHOICES=((i,i) for i in range(15,121,15))
 DIFFICULTY_CHOICES=((i,i) for i in range(1,6))
 IMPORTANCE_CHOICES=((i,i) for i in range(1,6))
@@ -65,7 +74,7 @@ class Theory(models.Model):
     theory = RichTextUploadingField(null=True, blank=True)
     difficulty=models.IntegerField(null=False,choices=DIFFICULTY_CHOICES,default=1)
     importance=models.IntegerField(null=False,choices=IMPORTANCE_CHOICES,default=1)
-    duration=models.IntegerField(null=False)
+    duration=models.IntegerField(null=True)
     prerequisites=models.ManyToManyField(SubConcept,related_name="prerequisiteOf",blank=True)
     summary=RichTextUploadingField(null=True, blank=True)
     mnemonics=RichTextUploadingField(null=True, blank=True)

@@ -10,24 +10,17 @@ Theories
       {%for subConcept in concept.subConcepts.all%}
       <tr>
         <td class="theorylistsubconcept">{{subConcept.name}} </td>
-        <td class="theorylistlink">
           {% if subConcept.isTheory %}
-            <a href="{{ subConcept.get_theory_update_url }}">edit Theory</a> 
-        </td>
-        <td class="theorylistlink">
-            <a href="{{ subConcept.get_theory_easy_url }}">{% if  subConcept.isEasyFilled %}Edit Easy Examples {%else%} Add Easy Examples {%endif%}</a>
-        </td>
-        <td class="theorylistlink">
-            <a href="{{ subConcept.get_theory_medium_url }}">{% if  subConcept.isMediumFilled %}Edit Medium Examples {%else%} Add Medium Examples {%endif%}</a>
-        </td>
-        <td class="theorylistlink">
-            <a href="{{ subConcept.get_theory_hard_url }}">{% if  subConcept.isHardFilled %}Edit Hard Examples {%else%} Add Hard Examples {%endif%}</a>
-        </td>
-        <td class="theorylistlink">
-            <a href="{{ subConcept.get_theory_view_url}}">show</a>
-        </td>
-          {%else%}
-            <a href="{{subConcept.get_theory_add_url}}">add Theory</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_update_url}}">{% if subConcept.isTheoryFilled %}Edit Theory{%else%}Add Theory{%endif%}</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_easy_update_url}}">{% if subConcept.isEasyFilled %}Edit Easy Examples{%else%}Add Easy Examples{%endif%}</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_medium_update_url}}">{% if subConcept.isMediumFilled %}Edit Medium Examples{%else%}Add Medium Examples{%endif%}</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_hard_update_url}}">{% if subConcept.isHardFilled %}Edit Hard Examples{%else%}Add Hard Examples{%endif%}</a></td>
+            <td class="theorylistlink"><a href="{{ subConcept.get_theory_view_url}}">show</a></td>
+            {%else%}
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_add_url}}">Add Theory</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_easy_add_url}}">Add Easy Examples</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_medium_add_url}}">Add Medium Examples</a></td>
+            <td class="theorylistlink"><a href="{{subConcept.get_theory_hard_add_url}}">Add Hard Examples</a></td>
           {%endif%}
       {% endfor %}
       </tr>

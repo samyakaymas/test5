@@ -7,6 +7,9 @@ urlpatterns=[
 
     path('',login_required(TemplateView.as_view(template_name="home.html"))),
     path("add/<int:subConceptId>",login_required(views.TheoryCreateView.as_view()),name="add"),
+    path("addEasy/<int:subConceptId>",login_required(views.EasyCreateView.as_view()),name="easy-add"),
+    path("addMedium/<int:subConceptId>",login_required(views.MediumCreateView.as_view()),name="medium-add"),
+    path("addHard/<int:subConceptId>",login_required(views.HardCreateView.as_view()),name="hard-add"),
     path("ajax/load/subConcepts",views.loadSubConcepts,name="ajaxLoadSubConcepts"),
     path("ajax/load/subConcepts1",views.loadSubConcepts1,name="ajaxLoadSubConcepts1"),
     path("cross/",views.Cross,name="cross"),
