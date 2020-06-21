@@ -10,52 +10,36 @@
       {%endblock%}
 </title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
-<style>
-  /* Add a black background color to the top navigation */
- .topnav {
-   background-color: #333;
-   overflow: hidden;
- }
- 
- /* Style the links inside the navigation bar */
- .topnav a {
-   float: left;
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
-   font-size: 17px;
- }
- 
- /* Change the color of links on hover */
- .topnav a:hover {
-   background-color: #ddd;
-   color: black;
- }
- 
- /* Add a color to the active/current link */
- .topnav a.active {
-   background-color: #4CAF50;
-   color: white;
- }
-   </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
    {% block style %}
+   <style>
+     
+   </style>
    {% endblock %}
  </head>
  <body>
    
-   <div class="topnav">
-     <a href="/">Home</a>
-     <a href="/theory/showTheory">Theory List</a>
-     <a href="/theory/previewTheory">Preview Theorys</a>
-     <a href="/theory/QuesTag">Tag Questions</a>
-     <a href="/theory/quesview">Tagged Questions Preview</a>
-     <a href="/theory/cross">Cross Concept Questions Add/Edit</a>
-     <a href="/theory/crossview">Cross Concept Question Preview</a>
-     <a href="/signout">Logout</a>
-   </div> 
-   <div id="loader" style="position: fixed; top:50%;left:50%;visibility: hidden;"><img src="{% static 'loader.gif' %}" height="50px" width="50px"></div>
-   <div id="contents" height="200%">
+   <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
+    <a href="/" class="nav-link navbar-brand">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="/theory/showTheory" class="nav-link">Theory List</a></li>
+      <li class="nav-item"><a href="/theory/previewTheory" class="nav-link">Preview Theorys</a></li>
+      <li class="nav-item"><a href="/theory/QuesTag" class="nav-link">Tag Questions</a></li>
+      <li class="nav-item"><a href="/theory/quesview" class="nav-link">Tagged Questions Preview</a></li>
+      <li class="nav-item"><a href="/theory/cross" class="nav-link">Cross Concept Questions Add/Edit</a></li>
+      <li class="nav-item"><a href="/theory/crossview" class="nav-link">Cross Concept Question Preview</a></li>
+      <li class="nav-item"><a href="/signout" class="nav-link">Logout</a></li>
+      </ul>
+   </nav> 
+   
+  <div id="loader" style="position:fixed;visibility:hidden;height:20%;width:20%;top:30%;left:40%;"><img src="{% static 'loader.gif' %}" height="100%" width="100%" class="img-fluid"></div>
+   <div id="contents" class="container-fluid">
     {% block content %}
     {% endblock %}
     <br><br><br>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'theoryTag',
     'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -152,7 +153,7 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join(
             ['ckeditor_wiris','chart','image2','sharedspace','autosave'] ),
         'removePlugins': ','.join(
-            ['image','elementspath','resize'] ),
+            ['image','elementspath','resize','maximize'] ),
         'toolbar': 'full',
         'width':'90%',
 	'removeButtons' : 'Language,PasteFromWord,PasteText,Source,Save,Preview,Print,Templates,Cut,Copy,Paste,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Flash,About',

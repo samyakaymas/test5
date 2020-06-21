@@ -5,13 +5,15 @@ Theories
 {% block content %}
   <h1>Proof Read Theory</h1>
   {%if theory_list%}
-  <table class="theorylist">
+  <table class="table table-bordered table-hover table-responsive-xl">
+    <thead class="thead-dark">
     <tr>
         <th>Chapter</th>
         <th>Concept</th>
         <th>SubConcept</th>
         <th>Preview</th>
     </tr>
+    </thead>
     {%for theory in theory_list%}
     <tr>
         <td>{{theory.subConcept.concept.chapter.name}}</td>
@@ -28,25 +30,6 @@ Theories
 
 {% block style %}
 <style>
-table.theorylist{
-  width: 50%;
-}
-.theorylist caption{
-  caption-side: top;
-}
-table.theorylist tr{
-  width:50%;
-  border: 1px solid black;
-}
-td.theorylistsubconcept {
-  border: 1px solid black;
-  width:75%;
-}
-td.theorylistlink {
-  text-align: center;
-  border: 1px solid black;
-  width:25%;
-}
 </style>
 
 {% endblock %}

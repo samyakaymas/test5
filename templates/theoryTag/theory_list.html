@@ -5,21 +5,21 @@ Theories
 {% block content %}
   <h1>Theory List</h1>
     {% for concept in chapter.concepts.all%}
-      <table class="theorylist">
-        <caption> <strong>{{concept.name}}</strong> </caption>
+      <table class="table table-bordered table-hover table-responsive-xl">
+        <caption style="caption-side: top;"> <strong>{{concept.name}}</strong> </caption>
       {%for subConcept in concept.subConcepts.all%}
       <tr>
         <td class="theorylistsubconcept">{{subConcept.name}} </td>
           {% if subConcept.isTheory %}
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_update_url}}">{% if subConcept.isTheoryFilled %}Edit Theory{%else%}Add Theory{%endif%}</a></td>
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_easy_update_url}}">{% if subConcept.isEasyFilled %}Edit Easy Examples{%else%}Add Easy Examples{%endif%}</a></td>
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_medium_update_url}}">{% if subConcept.isMediumFilled %}Edit Medium Examples{%else%}Add Medium Examples{%endif%}</a></td>
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_hard_update_url}}">{% if subConcept.isHardFilled %}Edit Hard Examples{%else%}Add Hard Examples{%endif%}</a></td>
-            {%else%}
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_add_url}}">Add Theory</a></td>
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_easy_add_url}}">Add Easy Examples</a></td>
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_medium_add_url}}">Add Medium Examples</a></td>
-            <td class="theorylistlink"><a href="{{subConcept.get_theory_hard_add_url}}">Add Hard Examples</a></td>
+            <td class=""><a href="{{subConcept.get_theory_update_url}}">{% if subConcept.isTheoryFilled %}Edit Theory{%else%}Add Theory{%endif%}</a></td>
+            <td class=""><a href="{{subConcept.get_theory_easy_update_url}}">{% if subConcept.isEasyFilled %}Edit Easy Examples{%else%}Add Easy Examples{%endif%}</a></td>
+            <td class=""><a href="{{subConcept.get_theory_medium_update_url}}">{% if subConcept.isMediumFilled %}Edit Medium Examples{%else%}Add Medium Examples{%endif%}</a></td>
+            <td class=""><a href="{{subConcept.get_theory_hard_update_url}}">{% if subConcept.isHardFilled %}Edit Hard Examples{%else%}Add Hard Examples{%endif%}</a></td>
+          {%else%}
+            <td class=""><a href="{{subConcept.get_theory_add_url}}">Add Theory</a></td>
+            <td class=""><a href="{{subConcept.get_theory_easy_add_url}}">Add Easy Examples</a></td>
+            <td class=""><a href="{{subConcept.get_theory_medium_add_url}}">Add Medium Examples</a></td>
+            <td class=""><a href="{{subConcept.get_theory_hard_add_url}}">Add Hard Examples</a></td>
           {%endif%}
       {% endfor %}
       </tr>
@@ -30,25 +30,6 @@ Theories
 
 {% block style %}
 <style>
-table.theorylist{
-  width: 50%;
-}
-.theorylist caption{
-  caption-side: top;
-}
-table.theorylist tr{
-  width:50%;
-  border: 1px solid black;
-}
-td.theorylistsubconcept {
-  border: 1px solid black;
-  width:75%;
-}
-td.theorylistlink {
-  text-align: center;
-  border: 1px solid black;
-  width:25%;
-}
 </style>
 
 {% endblock %}

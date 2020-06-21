@@ -44,7 +44,6 @@ def signup(request):
                 print(user)
                 
                 if user is not None:
-                    print("NOT")
                     return render(request,'signup.html',{'form':form,'isCreated':1,'message':"User Not Created"})
                 else:
                     return render(request,'signup.html',{'form':form,'isCreated':1,'message':"User Created"})

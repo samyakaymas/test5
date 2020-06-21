@@ -1,33 +1,23 @@
 {% extends "layout1.html" %}
-
+{% load crispy_forms_tags %}
 {%block title%}
-Super User
+Create User
 {%endblock%}
 
 {% block content %}
-<h1>Welcome Superuser</h1>
-  <h1>{{message}}</h1>
   <h2>Create User</h2>
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
+    <div class="form-group">
+        {{ field|as_crispy_field }}
+    </div>
     {% endfor %}
-    <button type="submit">Create</button>
+    <button type="submit" class="btn btn-danger">Create</button>
+    <p>{{ message }}<p>
   </form>
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+{% endblock %}
+{% block script %}
 <script>
   $(document).ready(()=>{
     var flag= {{isCreated}};
