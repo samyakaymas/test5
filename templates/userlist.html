@@ -1,0 +1,59 @@
+{% extends "layout1.html" %}
+
+{%block title%}
+Super User
+{%endblock%}
+
+{% block content %}
+<h1>User List</h1>
+{% if user_list %}
+  <table id= "userlist">
+      <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Subject</th>
+          <th>Chapter</th>
+          <th>Superuser</th>
+      </tr>
+    {% for user in user_list %}
+        <tr>
+            <td>{{user.pk}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.subject}}</td>
+            <td>{{user.chapter}}</td>
+            <td>{% if user.is_superuser %} &#10004 {% else %} &#10006 {% endif %}</td>
+        </tr>
+    {% endfor %}
+ </table>
+<style>
+#userlist {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#userlist td, #userlist th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#userlist tr:nth-child(even){background-color: #f2f2f2;}
+
+#userlist tr:hover {background-color: #ddd;}
+
+#userlist th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+{% else %}
+  <p>There are no User in the library.</p>
+{% endif %} 
+{% endblock %}
